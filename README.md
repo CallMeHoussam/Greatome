@@ -5,8 +5,6 @@
 
 ## ExamRank02, 03, 04, 05, 06 & PiscineExam
 
-## 👉  42_EXAM is now part of **[GRADEME.FR](https://grademe.fr)** 😎
-
 #### Disclaimer: This project is not made by 42School, it's not identical to the proposed exams and does not reflect your exams at 42
 
 ### NEW ExamRank02 available 🥳
