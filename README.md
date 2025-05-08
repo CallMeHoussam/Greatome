@@ -3,14 +3,7 @@
 
 ## All 42 exams auto-correct, to practice.
 
-## ExamRank02, 03, 04, 05, 06 & PiscineExam
-
-#### Disclaimer: This project is not made by 42School, it's not identical to the proposed exams and does not reflect your exams at 42
-
-### NEW ExamRank02 available 🥳
-
-<img width="711" alt="Screenshot 2022-09-06 at 17 00 20" src="https://user-images.githubusercontent.com/55356071/188669215-6681228d-e6b5-4229-b177-45d2699e29ae.png">
-
+## PiscineExam
 ---
 
 ### ⚠️ This project is available on MAC and LINUX (the real exam will be on Linux)
