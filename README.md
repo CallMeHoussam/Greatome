@@ -1,5 +1,5 @@
 
-# 42_EXAM v2 🎓(Lastest save before being close)
+# EXAM_MOCK v69 🎓
 
 ## All 42 exams auto-correct, to practice.
 
@@ -12,7 +12,7 @@
 
 ## Practice for the 42 exam 🏊‍♂️
 
-- [X] New Subjects ExamRank02 APRIL 2022
+- [X] New Subjects 
 - [X] Subject drawn at random
 - [X] Exponential waiting for a correction
 - [X] X Hours maximum
