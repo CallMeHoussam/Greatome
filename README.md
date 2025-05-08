@@ -61,6 +61,10 @@
 
  bash .system/launch.sh
 
+or 
+
+make 
+make
 You may need to install g++ and libreadline-dev :
 
 sudo apt-get update
