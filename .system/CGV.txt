@@ -1,0 +1,12 @@
+ Disclaimer 
+↪ ExamMocker, is an educational project developed for students of 1337 School    (part of the 42 Network). It is intended solely for **Learning and practice purposes**.
+↪ We are not responsible for any misuse or misinterpretation of this tool.
+↪ Use ExamMocker **responsibly**  to improve your understanding of code there are no shortcuts to success.
+↪ This tool is designed to help you **analyze your errors and better understand code issues**, but please note:
+
+↪ Its content **may not align**  exactly with the official **ExamShell**.
+↪ **Moulinette corrections** can vary significantly.
+↪ **Exam topics** can change at any time without notice.
+
+You are solely responsible for your own exam preparation and results .
+By typing **"agree"** and using **ExamMocker**, you acknowledge and accept these terms.
