@@ -1,4 +1,4 @@
-version="2.1"
+version="69"
 
 # if there is a a.out file in the current directory, delete it
 if [ -f .system/a.out ]; then
@@ -173,14 +173,14 @@ PID=$!
 # while there is no a.out file in the current directory, wait
 while [ ! -f .system/a.out ]; do
     for i in "${spin[@]}"; do
-        echo -ne "$LINE_UP$WHITE$i$WHITE$BOLD Compilation of$BOLD$MANGENTA 42_EXAM $RESET\n"
+        echo -ne "$LINE_UP$WHITE$i$WHITE$BOLD Compilation of$BOLD$MANGENTA EXAM_MOCKER $RESET\n"
         if [ -f .system/.devmake.err ]; then
             result=$(awk '{t+=length($0)}END{print t}' .system/.devmake.err)
             # echo "$result<<<<"
             if [ "$result" != "" ]; then
                 sending=$(cat .system/.devmake.err)
                 printf "$LINE_UP$CLEAR_LINE$RED"
-                echo -ne "✗$RESET Compilation of$BOLD$MANGENTA 42_EXAM $RESET\n"
+                echo -ne "✗$RESET Compilation of$BOLD$MANGENTA EXAM_MOCKER $RESET\n"
                 printf "$RED$BOLD"
                 printf "Oops !$WHITE$BOLD Something went wrong during the compilation...\n"
                 echo "Please make a report on Github repo, make sure to include this :"
@@ -236,7 +236,7 @@ if ! check_package "g++"; then
 fi
 
 printf "$LINE_UP$CLEAR_LINE$GREEN$BOLD"
-echo -ne "✔$RESET Compilation of$BOLD$MANGENTA 42_EXAM $RESET\n"
+echo -ne "✔$RESET Compilation of$BOLD$MANGENTA EXAM_MOCKER $RESET\n"
 
 # echo "Done!"
 chmod +x .system/a.out

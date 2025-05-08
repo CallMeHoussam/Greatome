@@ -171,7 +171,7 @@ void connexion(void)
     std::cout << std::endl;
     usleep(600000);
     system("clear");
-    std::cout << BOLD << UNDERLINE << "ExamShell v2.1" << RESET << std::endl
+    std::cout << BOLD << UNDERLINE << "ExamShell v69" << RESET << std::endl
               << std::endl;
     std::cout << BOLD << "login:" << RESET;
     fflush(stdout);
@@ -380,12 +380,15 @@ int exam::piscine_menu(void)
         std::cout << std::endl
                   << LIME << "            2" << RESET << WHITE << BOLD << std::endl
                   << "       EXAM WEEK 02" << std::endl;
+        std::cout << std::endl
+                  << LIME << "            3" << RESET << WHITE << BOLD << std::endl
+                  << "       EXAM WEEK 03" << std::endl;
+        std::cout << std::endl
+                  << LIME << "            4" << RESET << WHITE << BOLD << std::endl
+                  << "       EXAM WEEK 04" << std::endl;
         std::cout << RESET << BOLD << std::endl
                   << "     \\ ------------ /" << std::endl
                   << std::endl
-                  << std::endl;
-        std::cout << WHITE << BOLD << "    |  Student PART  |" << RESET << BOLD << std::endl
-                  << "     \\ ------------ /" << std::endl
                   << std::endl;
         if (choice == "-1")
             std::cout << BOLD << RED;
@@ -394,7 +397,7 @@ int exam::piscine_menu(void)
                   << "            ";
         if (!std::getline(std::cin, choice))
             sigd();
-        if (choice != "1" && choice != "2" && choice != "0")
+        if (choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "0")
             choice = "-1";
     }
     return (atoi(choice.c_str()));

@@ -1,3 +1,4 @@
+#include <algorithm> // Add this header for std::all_of
 #include "exam.hpp"
 
 // ==> Store data of exam in a file
@@ -47,13 +48,62 @@ void exam::restore_data(void)
         file >> backup.level_per_ex_save;
         file >> backup.using_cheatcode;
 
-        backup.current_ex = new exercise(backup.get_lvl(), name, std::stoi(assign), std::stoi(time_bef_grade));
+        // Debugging: Print the values read from the file
+        std::cout << "Debug: assign = '" << assign << "', time_bef_grade = '" << time_bef_grade << "'" << std::endl;
+
+        // Validate that 'assign' and 'time_bef_grade' are not empty
+        if (assign.empty() || time_bef_grade.empty())
+        {
+            std::cerr << "Error: Missing data in file. Empty value encountered." << std::endl;
+            file.close();
+            return;
+        }
+
+        // Validate that 'assign' and 'time_bef_grade' are integers
+        if (!std::all_of(assign.begin(), assign.end(), ::isdigit) || 
+            !std::all_of(time_bef_grade.begin(), time_bef_grade.end(), ::isdigit))
+        {
+            std::cerr << "Error: Invalid data in file. Non-numeric value encountered." << std::endl;
+            file.close();
+            return;
+        }
+
+        try
+        {
+            int assign_int = std::stoi(assign);
+            int time_bef_grade_int = std::stoi(time_bef_grade);
+
+            // Safely allocate memory for the exercise
+            try
+            {
+                backup.current_ex = new exercise(backup.get_lvl(), name, assign_int, time_bef_grade_int);
+            }
+            catch (const std::bad_alloc &e)
+            {
+                std::cerr << "Error: Memory allocation failed while creating exercise." << std::endl;
+                file.close();
+                return;
+            }
+        }
+        catch (const std::invalid_argument &e)
+        {
+            std::cerr << "Error: Invalid data in file. Could not convert to integer." << std::endl;
+            file.close();
+            return;
+        }
+        catch (const std::out_of_range &e)
+        {
+            std::cerr << "Error: Integer value out of range in file." << std::endl;
+            file.close();
+            return;
+        }
+
         backup.backup = 1;
         file.close();
     }
     else
     {
-        std::cout << "Error: can't open backup" << std::endl;
+        std::cerr << "Error: Can't open backup file." << std::endl;
     }
 
     file.close();

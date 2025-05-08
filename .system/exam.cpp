@@ -7,10 +7,7 @@ std::map<int, exercise> exam::list_dir(void)
     int i = 0;
     std::map<int, exercise> list;
     std::string path;
-    if (student)
-        path = ".subjects/STUD_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/";
-    else
-        path = ".subjects/PISCINE_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/";
+    path = ".subjects/PISCINE_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/";
 
     DIR *dir = opendir(path.c_str());
     std::string folder;
@@ -37,46 +34,23 @@ std::map<int, exercise> exam::list_dir(void)
 std::string exam::get_path(void)
 {
     std::string path_exam;
-
-    if (student)
-        path_exam = ".subjects/STUD_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/" + current_ex->get_name() + "/";
-    else
-        path_exam = ".subjects/PISCINE_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/" + current_ex->get_name() + "/";
+    path_exam = ".subjects/PISCINE_PART/exam_0" + std::to_string(exam_number) + "/" + std::to_string(level) + "/" + current_ex->get_name() + "/";
     return (path_exam);
 }
 
 // ==> Set max level for an exam
 void exam::set_max_lvl(void)
 {
-    if (student)
-    {
-        if (exam_number == 2)
-            level_max = 4;
-        else if (exam_number == 3)
-            level_max = 1;
-        else if (exam_number == 4)
-            level_max = 1;
-        else if (exam_number == 5)
-            level_max = 3;
-        else if (exam_number == 6)
-            level_max = 1;
-    }
-    else
-        level_max = 8;
+    level_max = 8;
 }
 
 // ==> Set max hrs for exam (3 or 4)
 void exam::set_max_time(void)
 {
-    if (student)
-        time_max = 180;
+    if (exam_number == 4)
+        time_max = 480;
     else
-    {
-        if (exam_number == 4)
-            time_max = 480;
-        else
-            time_max = 240;
-    }
+        time_max = 240;
 }
 
 void exam::explanation(void)
@@ -108,14 +82,6 @@ void exam::explanation(void)
               << "             - The exam number you choose.\n"
               << "             - Name of exercise, fail or success, current assignement and level.\n"
               << std::endl << std::endl;
-
-    std::cout << "\x1B[32m      🚀 Grademe VIP\e[97m\e[1m: (0€ - 3€)" << std::endl;
-    std::cout << "         You can become VIP by contributing to the repo, making a \x1B[35mPull Request\e[97m\e[1m\n         OR \x1B[32mSponsor Github Page\e[97m\e[1m (use \x1B[35msponsor\e[97m\e[1m for more info):\n"
-              << "             - Instant correction with new \x1B[35mgradenow\e[97m\e[1m command\n"
-              << "             - Force an exercise to succeed with \x1B[35mforce_success\e[97m\e[1m command\n"
-              << "             - Having the \x1B[35mSAME display condition\e[97m\e[1m as 42 school\n"
-              << "               More coming...\n"
-              << std::endl << std::endl;
     
     std::cout << RED << "     ‼️  DICLAIMER" << WHITE << std::endl;
     std::cout << "         This program is " << RED << "not" << WHITE << " the real 42 exam and is " << RED << "not" << WHITE << " made by 42." << std::endl;
@@ -137,24 +103,10 @@ void exam::ask_param(void)
         exam_number = 0;
         while (exam_number == 0)
         {
-            if (exam_number == 0)
-                select = stud_or_swim();
-            if (select == 1)
-            {
-                student = false;
-                exam_number = piscine_menu();
-            }
-            else if (select == 2)
-            {
-                student = true;
-                exam_number = stud_menu();
-            }
+            exam_number = piscine_menu();
         }
         std::cout << REMOVE_LINE << REMOVE_LINE << REMOVE_LINE << std::endl;
-        if (student)
-            std::cout << LIME << BOLD << "       EXAM RANK 0" << exam_number << RESET << std::endl;
-        else
-            std::cout << LIME << BOLD << "       EXAM WEEK 0" << exam_number << RESET << std::endl;
+        std::cout << LIME << BOLD << "       EXAM WEEK 0" << exam_number << RESET << std::endl;
         std::cout << "   Confirm" << BOLD << WHITE << " Registration" << RESET << "?" << std::endl
                   << "          (y/n)" << std::endl
                   << "            ";
@@ -172,10 +124,7 @@ void exam::ask_param(void)
     // SEND DATA ABOUT CHOOSEN EXAM
     std::string tmp;
     std::string enter;
-    if (student)
-        tmp = "bash .system/data_sender.sh \"choose_examrank0" + std::to_string(exam_number) + "\"";
-    else
-        tmp = "bash .system/data_sender.sh \"choose_examweek0" + std::to_string(exam_number) + "\"";
+    tmp = "bash .system/data_sender.sh \"choose_examweek0" + std::to_string(exam_number) + "\"";
     system(tmp.c_str());
     explanation();
     // =============================
@@ -230,25 +179,25 @@ std::string generate_unique_id()
 }
 
 // CONSTRUCTOR/OPERATOR/GETTER/SETTER
-exam::exam(void) : exam_grade(0), level(0), level_max(0), failures(0), student(false), backup(false), using_cheatcode(0)
+exam::exam(void) : exam_grade(0), level(0), level_max(0), failures(0), backup(false), using_cheatcode(0)
 {
     reelmode = true;
     waiting_time = true;
-	vip = 0;
+    vip = 0;
     username = getenv("USER");
     load_settings();
-	system("curl https://user.grademe.fr/vip_list > .system/vip_list 2> /dev/null");
-	std::ifstream vip_list(".system/vip_list");
-	std::string line;
+    system("curl https://user.grademe.fr/vip_list > .system/vip_list 2> /dev/null");
+    std::ifstream vip_list(".system/vip_list");
+    std::string line;
 
-	while (std::getline(vip_list, line))
-	{
-		if (line == username)
-		{
-			vip = 1;
-			break;
-		}
-	}
+    while (std::getline(vip_list, line))
+    {
+        if (line == username)
+        {
+            vip = 1;
+            break;
+        }
+    }
     changex = 0;
     if (setting_an == 1)
         setenv("LOGNAMELOG42EXAM", generate_unique_id().c_str(), 1);
@@ -261,7 +210,6 @@ exam &exam::operator=(exam const &src)
     this->level = src.level;
     this->level_max = src.level_max;
     this->failures = src.failures;
-    this->student = src.student;
     this->reelmode = src.reelmode;
     this->waiting_time = src.waiting_time;
     this->level_per_ex = src.level_per_ex;
