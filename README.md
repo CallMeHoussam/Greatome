@@ -39,23 +39,8 @@
 
    **new_ex** : generate a new exercice on the same level
 
-# 🕶 VIP CHEAT code :
 
- [Sponsor to become VIP](https://github.com/sponsors/JCluzet)
- OR
- [Contribute to become VIP](CONTRIBUTING.md)
-
- You can contribute by adding new exercises or improving the program
-
-   **gradenow** : Get an instant correction (no grademe cooldown)
-
-> Being a sponsor brings VIP on GradeMe and 42_EXAM.
-
-> VIPs also have exactly the same display as the 42 examshell.
-
-> More features coming
-
-# Launch 42_EXAM in ONE COMMAND :
+# Launch ExamMocker in ONE COMMAND :
 
 (All commands has to be launch from the 42-EXAM folder)
 
@@ -100,8 +85,12 @@ All the subjects have been found on Github. During my schooling at 42, this proj
 This project has been created with the sole purpose of helping students to understand their mistakes and improve themselves.
 If It’s not the case, I am ready to make changes and corrections on it, 42_EXAM/GradeMe has only a non-lucrative and educational purpose. It is completely free and open-source.
 
-# Your help is welcome
+# Errors
+Please before you close the terminal type : finish then type yes
+This will help you to avoid errors in next time when you trying it.
 
-👋 If you have any problem with any test, please create an "Issue" here on Github, it will only take 3 minutes of your time and it will help me to make the test more accurate.
+Also when you make the program and you facing an error , copy this command in your terminal: 
+rm .system/exam_token/current_token.txt 
 
-📌 Remember that if you encounter an error, you're probably not the only one and your "Issue" will surely help other people.
+Then it will works fine 😊
+
