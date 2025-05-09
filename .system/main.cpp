@@ -1,4 +1,6 @@
 #include "exam.hpp"
+#include <iostream>
+#include <string>
 
 #define YELLOW "\033[33m"
 #define PURPLE "\033[35m"
@@ -6,6 +8,39 @@
 #define DARK_GREEN "\033[32m"
 #define BOLD "\033[1m"
 #define RESET "\033[0m"
+
+std::string selected_language = "English"; // Default language
+
+void choose_language()
+{
+    std::cout << "Please choose a language for translation:" << std::endl;
+    std::cout << "1. Darija" << std::endl;
+    std::cout << "2. English" << std::endl;
+    std::cout << "3. French" << std::endl;
+    std::cout << "Enter the number corresponding to your choice: ";
+
+    int choice;
+    std::cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        selected_language = "Darija";
+        break;
+    case 2:
+        selected_language = "English";
+        break;
+    case 3:
+        selected_language = "French";
+        break;
+    default:
+        std::cout << "Invalid choice. Defaulting to English." << std::endl;
+        selected_language = "English";
+        break;
+    }
+
+    std::cout << "You have selected: " << selected_language << std::endl;
+}
 
 void CGVAcceptation(void)
 {
@@ -197,7 +232,7 @@ void exam::exam_prompt(void)
         }
         else if (input == "force_success")
         {
-            if (!vip)
+            if (vip)
             {
                 std::cout << "'force_success' is a Grademe+ command, contribute by making a Pull Request or support with command 'sponsor'" << std::endl;
             }
@@ -296,6 +331,22 @@ bool exam::start_new_ex(void)
     return (true);
 }
 
+void show_exam_weeks_panel()
+{
+    if (selected_language == "Darija")
+    {
+        std::cout << "مرحبا بك في لوحة أسابيع الامتحان" << std::endl;
+    }
+    else if (selected_language == "French")
+    {
+        std::cout << "Bienvenue dans le panneau des semaines d'examen" << std::endl;
+    }
+    else // Default to English
+    {
+        std::cout << "Welcome to the Exam Weeks Panel" << std::endl;
+    }
+}
+
 int main(int argc, char **argv)
 {
     signal(SIGINT, sigc);
@@ -306,6 +357,9 @@ int main(int argc, char **argv)
         remove("a.out");
 
     exam exm;
+
+    // Show the language selection window
+    choose_language();
 
     // Adding CGV Acceptation
     if (!file_exists(".system/acceptCGV"))
